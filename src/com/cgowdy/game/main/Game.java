@@ -76,19 +76,26 @@ public class Game extends JPanel implements Runnable {
 		System.exit(0);
 	}
 
-	private void updateAndRender(long delta) {
-		currentState.update(delta / 1000f);
+	private void updateAndRender(long deltaMillis) {
+		currentState.update(deltaMillis / 1000f);
 		prepareGameImage();
 		currentState.render(gameImage.getGraphics());
-		repaint();
+		renderGameImage(getGraphics());
+	}
+
+	private void renderGameImage(Graphics g) {
+		if (gameImage == null) {
+			g.drawImage(gameImage, 0, 0, null);
+		}
+		g.dispose();
+
 	}
 
 	private void prepareGameImage() {
 		if (gameImage == null) {
 			gameImage = createImage(gameWidth, gameHeight);
 		}
-		Graphics g = gameImage.getGraphics();
-		g.clearRect(0, 0, gameWidth, gameHeight);
+
 	}
 
 	public void exit() {
