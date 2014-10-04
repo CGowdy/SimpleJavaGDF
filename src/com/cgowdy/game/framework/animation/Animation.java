@@ -41,4 +41,8 @@ public class Animation {
 	public synchronized void render(Graphics g, int x, int y){
 		g.drawImage(frames[currentFrameIndex].getImage(), x, y, null);
 	}
+	
+	public synchronized void render(Graphics g, int x, int y, int width, int height){
+		g.drawImage(frames[currentFrameIndex].getImage(), x, y, width, height, null);
+	}
 }
